@@ -18,6 +18,7 @@ export async function getUserID(email) {
   
       if (!response.ok) {
         console.error('Error al obtener el usuario:', response.statusText);
+        await CreateUser(Usuario);
         return null;
       }
   
