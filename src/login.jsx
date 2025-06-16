@@ -127,6 +127,7 @@ async function loginWithGoogle() {
         password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
         password_confirmation: 'google-auth',
       };
+
       
   
       const exist = await getUserID(Usuario.email); 
@@ -227,7 +228,15 @@ async function handleFormSubmit() {
       await signInWithPopup(auth, new GoogleAuthProvider());
       console.log('Autenticación correcta');
 
+      const Usuario = {
+        name: auth.currentUser.displayName,
+        email: auth.currentUser.email,
+        password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
+        password_confirmation: 'google-auth',
+      };
 
+      
+  
       const exist = await getUserID(Usuario.email); 
       if (!exist) {
         
@@ -243,7 +252,7 @@ async function handleFormSubmit() {
         console.log('ID de usuario:', auth.currentUser.id);
         console.log(auth.currentUser);
       }
-      navigate('/');
+
     } catch (error) {
       console.error('Error:', error);
       setMessage('Hubo un problema al iniciar sesión con Google.');
@@ -347,7 +356,11 @@ async function handleFormSubmit() {
                       </button>
                     )}
         </div>
- 
+            <div className='actions'>
+            <button onClick={loginWithGoogle} className='secondary-button'>
+                <img src={foto} alt='Google logo' className='google-logo'/>
+                Iniciar sesión con Google</button>
+            </div>
             </>
           ) : 
           <div className='logout'>
