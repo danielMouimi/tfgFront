@@ -128,23 +128,24 @@ async function loginWithGoogle() {
         password_confirmation: 'google-auth',
       };
 
-      console.log('llega hasra getuserid');
+      CreateUser(Usuario);
+      
   
-      const exist = await getUserID(Usuario.email); 
-      if (!exist) {
+    //   const exist = await getUserID(Usuario.email); 
+    //   if (!exist) {
         
-        await CreateUser(Usuario);
-        await sendEmailVerification(userCredential.user);
-        setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
-        auth.currentUser.id = exist.id;
-        console.log('ID de usuario:', auth.currentUser.id);
-        console.log(auth.currentUser);
-      } else {
-        console.log('Usuario ya existe, no se creará de nuevo');
-        auth.currentUser.id = exist.id; 
-        console.log('ID de usuario:', auth.currentUser.id);
-        console.log(auth.currentUser);
-      }
+    //     await CreateUser(Usuario);
+    //     await sendEmailVerification(userCredential.user);
+    //     setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
+    //     auth.currentUser.id = exist.id;
+    //     console.log('ID de usuario:', auth.currentUser.id);
+    //     console.log(auth.currentUser);
+    //   } else {
+    //     console.log('Usuario ya existe, no se creará de nuevo');
+    //     auth.currentUser.id = exist.id; 
+    //     console.log('ID de usuario:', auth.currentUser.id);
+    //     console.log(auth.currentUser);
+    //   }
   
     } catch (error) {
       console.error('Error:', error);
