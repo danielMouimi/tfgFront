@@ -71,7 +71,7 @@ export function Acciones() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(
-            { nombre: "Madrid", descripcion: "Ciudad capital de España, famosa por su cultura y gastronomía.",fotos:[], pais: "España" },
+            { nombre: "Madrid", descripcion: "Ciudad capital de España, famosa por su cultura y gastronomía.",fotos:null, pais: "España" },
           ),
         });
   
