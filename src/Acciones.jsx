@@ -65,7 +65,7 @@ export function Acciones() {
       }
   
       try {
-        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/destinos', {
+        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/newdestino', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
