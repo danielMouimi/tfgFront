@@ -68,7 +68,7 @@ export function Acciones() {
         const response = await fetch('https://tfgback-production-3683.up.railway.app/api/newdestino', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json', 
           },
           body: JSON.stringify(
             { nombre: "Madrid", descripcion: "Ciudad capital de España, famosa por su cultura y gastronomía.",fotos:null, pais: "España" },
