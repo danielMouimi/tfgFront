@@ -17,6 +17,13 @@ export async function getUserID(email) {
       });
   
       if (!response.ok) {
+        const Usuario = {
+            name: auth.currentUser.displayName,
+            email: auth.currentUser.email,
+            password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
+            password_confirmation: 'google-auth',
+          };
+        CreateUser(Usuario);
         console.error('Error al obtener el usuario:', response.statusText);
         return null;
       }
