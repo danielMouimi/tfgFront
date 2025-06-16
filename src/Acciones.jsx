@@ -69,7 +69,6 @@ export function Acciones() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Origin': 'https://tourflex-tfg.web.app/'
           },
           body: JSON.stringify(
             { nombre: "Madrid", descripcion: "Ciudad capital de España, famosa por su cultura y gastronomía.",fotos:[], pais: "España" },
