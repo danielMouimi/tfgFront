@@ -127,25 +127,23 @@ async function loginWithGoogle() {
         password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
         password_confirmation: 'google-auth',
       };
-
-      CreateUser(Usuario);
       
   
-    //   const exist = await getUserID(Usuario.email); 
-    //   if (!exist) {
+      const exist = await getUserID(Usuario.email); 
+      if (!exist) {
         
-    //     await CreateUser(Usuario);
-    //     await sendEmailVerification(userCredential.user);
-    //     setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
-    //     auth.currentUser.id = exist.id;
-    //     console.log('ID de usuario:', auth.currentUser.id);
-    //     console.log(auth.currentUser);
-    //   } else {
-    //     console.log('Usuario ya existe, no se creará de nuevo');
-    //     auth.currentUser.id = exist.id; 
-    //     console.log('ID de usuario:', auth.currentUser.id);
-    //     console.log(auth.currentUser);
-    //   }
+        await CreateUser(Usuario);
+        await sendEmailVerification(userCredential.user);
+        setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
+        auth.currentUser.id = exist.id;
+        console.log('ID de usuario:', auth.currentUser.id);
+        console.log(auth.currentUser);
+      } else {
+        console.log('Usuario ya existe, no se creará de nuevo');
+        auth.currentUser.id = exist.id; 
+        console.log('ID de usuario:', auth.currentUser.id);
+        console.log(auth.currentUser);
+      }
   
     } catch (error) {
       console.error('Error:', error);
@@ -228,6 +226,23 @@ async function handleFormSubmit() {
     try {
       await signInWithPopup(auth, new GoogleAuthProvider());
       console.log('Autenticación correcta');
+
+
+      const exist = await getUserID(Usuario.email); 
+      if (!exist) {
+        
+        await CreateUser(Usuario);
+        await sendEmailVerification(userCredential.user);
+        setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
+        auth.currentUser.id = exist.id;
+        console.log('ID de usuario:', auth.currentUser.id);
+        console.log(auth.currentUser);
+      } else {
+        console.log('Usuario ya existe, no se creará de nuevo');
+        auth.currentUser.id = exist.id; 
+        console.log('ID de usuario:', auth.currentUser.id);
+        console.log(auth.currentUser);
+      }
       navigate('/');
     } catch (error) {
       console.error('Error:', error);
