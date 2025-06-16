@@ -1,68 +1,97 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth } from "./firebase";
+
 export function Acciones() {
+  const [destino, setDestino] = useState({
+    nombre: "",
+    descripcion: "",
+    fotos: [],
+    pais: "",
+  });
 
-    useEffect(() => {
- const destinos = [
-      { nombre: "Madrid", descripcion: "Ciudad capital de España, famosa por su cultura y gastronomía.",fotos:[], pais: "España" },
-      { nombre: "Barcelona", descripcion: "Ciudad costera conocida por su arquitectura modernista y playas.",fotos:[], pais: "España" },
-      { nombre: "París", descripcion: "La ciudad del amor, hogar de la Torre Eiffel y el Louvre.",fotos:[], pais: "Francia" },
-      { nombre: "Roma", descripcion: "Ciudad eterna con una rica historia y monumentos como el Coliseo.",fotos:[], pais: "Italia" },
-      { nombre: "Londres", descripcion: "Capital de Inglaterra, famosa por el Big Ben y el Palacio de Buckingham.",fotos:[], pais: "Reino Unido" },
-      { nombre: "Nueva York", descripcion: "La Gran Manzana, conocida por Times Square y la Estatua de la Libertad.",fotos:[], pais: "Estados Unidos" },
-      { nombre: "Tokio", descripcion: "Capital de Japón, mezcla de tradición y modernidad.",fotos:[], pais: "Japón" },
-      { nombre: "Sídney", descripcion: "Ciudad australiana famosa por la Ópera de Sídney y sus playas.",fotos:[], pais: "Australia" },
-      { nombre: "Buenos Aires", descripcion: "Capital de Argentina, conocida por el tango y su vibrante vida nocturna.",fotos:[], pais: "Argentina" },
-      { nombre: "Ciudad de México", descripcion: "Capital de México, rica en historia y cultura.",fotos:[], pais: "México" },
-      { nombre: "El Cairo", descripcion: "Ciudad egipcia famosa por las pirámides y la Esfinge.",fotos:[], pais: "Egipto" },
-      { nombre: "Bangkok", descripcion: "Capital de Tailandia, conocida por sus templos y vida nocturna.",fotos:[], pais: "Tailandia" },
-      { nombre: "Dubái", descripcion: "Ciudad de los Emiratos Árabes Unidos, famosa por su lujo y arquitectura moderna.",fotos:[], pais: "Emiratos Árabes Unidos" },
-      { nombre: "Moscú", descripcion: "Capital de Rusia, hogar del Kremlin y la Plaza Roja.",fotos:[], pais: "Rusia" },
-      { nombre: "Pekín", descripcion: "Capital de China, conocida por la Ciudad Prohibida y la Gran Muralla.",fotos:[], pais: "China" },
-      { nombre: "Río de Janeiro", descripcion: "Ciudad brasileña famosa por el Cristo Redentor y sus carnavales.",fotos:[], pais: "Brasil" },
-      { nombre: "Cape Town", descripcion: "Ciudad sudafricana conocida por su belleza natural y Table Mountain.",fotos:[], pais: "Sudáfrica" },
-      { nombre: "Lisboa", descripcion: "Capital de Portugal, famosa por sus colinas y tranvías históricos.",fotos:[], pais: "Portugal" },
-      { nombre: "Ámsterdam", descripcion: "Ciudad de los Países Bajos, conocida por sus canales y museos.",fotos:[], pais: "Países Bajos" },
-      { nombre: "Venecia", descripcion: "Ciudad italiana construida sobre canales, famosa por sus góndolas.",fotos:[], pais: "Italia" }
-    ];
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDestino((prevDestino) => ({
+      ...prevDestino,
+      [name]: value,
+    }));
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("Usuario no autenticado");
+      return;
+    }
 
+    const token = await user.getIdToken();
 
+    try {
+      const response = await fetch("https://tfgback-production-3683.up.railway.app/api/destinos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        credentials: "include",
+        body: JSON.stringify(destino),
+      });
 
-        console.log('usuario autenticado:', auth.currentUser);
-        async function fetchOfertas() {
-            const user = auth.currentUser;
-            if (!user) return;
-          
-            const token = await user.getIdToken(); // ✅ espera el token
-          
-            // Itera sobre todos los destinos y envía cada uno al backend
-              try {
-                const response = await fetch('https://tfgback-production-3683.up.railway.app/api/destinos', {
-                  method: "POST",
-                  headers: { 
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                    'Origin': 'https://tfgfront-production.up.railway.app'
-                  }, 
-                  credentials: 'include',
-                  body: JSON.stringify(destinos[0]),
-                });
-          
-                if (!response.ok) {
-                  throw new Error(`Error al crear el destino: ${destinos[0]}`);
-                }
-          
-                const data = await response.json();
-                console.log(`Destino creado: ${destinos[0].nombre}`, data);
-              } catch (error) {
-                console.error(`Error al crear el destino: ${destinos[0].nombre}`, error);
-              }
-          }
-        fetchOfertas();
-      }, []);
-    
-    return (
-        <h1>LLega a ofertas</h1>
-    );
+      if (!response.ok) {
+        throw new Error(`Error al crear el destino: ${destino.nombre}`);
+      }
+
+      const data = await response.json();
+      console.log(`Destino creado: ${destino.nombre}`, data);
+      alert("Destino creado exitosamente");
+      setDestino({ nombre: "", descripcion: "", fotos: [], pais: "" }); // Reinicia el formulario
+    } catch (error) {
+      console.error(`Error al crear el destino: ${destino.nombre}`, error);
+      alert("Hubo un error al crear el destino");
+    }
+  };
+
+  return (
+    <div className="acciones-container">
+      <h1>Crear un nuevo destino</h1>
+      <form onSubmit={handleSubmit} className="destino-form">
+        <div className="form-group">
+          <label htmlFor="nombre">Nombre del destino:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={destino.nombre}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="descripcion">Descripción:</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            value={destino.descripcion}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="pais">País:</label>
+          <input
+            type="text"
+            id="pais"
+            name="pais"
+            value={destino.pais}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" className="submit-button">
+          Crear destino
+        </button>
+      </form>
+    </div>
+  );
 }
