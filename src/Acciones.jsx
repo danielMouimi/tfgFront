@@ -43,7 +43,7 @@ export function Acciones() {
                   headers: { 
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
-                    'Origin': 'https://tourflex-tfg.web.app/'
+                    'Origin': 'https://tfgfront-production.up.railway.app'
                   }, 
                   credentials: 'include',
                   body: JSON.stringify(destinos[0]),
@@ -54,9 +54,9 @@ export function Acciones() {
                 }
           
                 const data = await response.json();
-                console.log(`Destino creado: ${destino.nombre}`, data);
+                console.log(`Destino creado: ${destinos[0].nombre}`, data);
               } catch (error) {
-                console.error(`Error al crear el destino: ${destino.nombre}`, error);
+                console.error(`Error al crear el destino: ${destinos[0].nombre}`, error);
               }
           }
         fetchOfertas();
