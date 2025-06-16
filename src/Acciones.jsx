@@ -37,7 +37,6 @@ export function Acciones() {
             const token = await user.getIdToken(); // ✅ espera el token
           
             // Itera sobre todos los destinos y envía cada uno al backend
-            for (const destino of destinos) {
               try {
                 const response = await fetch('https://tfgback-production-3683.up.railway.app/api/destinos', {
                   method: "POST",
@@ -47,11 +46,11 @@ export function Acciones() {
                     'Origin': 'https://tourflex-tfg.web.app/'
                   }, 
                   credentials: 'include',
-                  body: JSON.stringify(destino),
+                  body: JSON.stringify(destinos[0]),
                 });
           
                 if (!response.ok) {
-                  throw new Error(`Error al crear el destino: ${destino.nombre}`);
+                  throw new Error(`Error al crear el destino: ${destinos[0]}`);
                 }
           
                 const data = await response.json();
@@ -59,7 +58,6 @@ export function Acciones() {
               } catch (error) {
                 console.error(`Error al crear el destino: ${destino.nombre}`, error);
               }
-            }
           }
         fetchOfertas();
       }, []);
