@@ -18,7 +18,6 @@ export async function getUserID(email) {
   
       if (!response.ok) {
         console.error('Error al obtener el usuario:', response.statusText);
-        await CreateUser(Usuario);
         return null;
       }
   
@@ -74,6 +73,7 @@ export function Login() {
 
 
   async function CreateUser(usuario) {
+    console.log('Usuario no existe, creando nuevo usuario');
         
     fetch('https://tfgback-production-3683.up.railway.app/api/register', {
       method: "POST",
@@ -126,7 +126,7 @@ async function loginWithGoogle() {
   
       const exist = await getUserID(Usuario.email); 
       if (!exist) {
-        console.log('Usuario no existe, creando nuevo usuario');
+        
         await CreateUser(Usuario);
         await sendEmailVerification(userCredential.user);
         setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
