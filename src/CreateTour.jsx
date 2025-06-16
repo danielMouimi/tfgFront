@@ -20,10 +20,11 @@ export function CreateTour() {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const response = await fetch('http://localhost/api/ofertas', {
+        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/ofertas', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/'
           },
         });
 
@@ -41,10 +42,11 @@ export function CreateTour() {
 
     const fetchDestinos = async () => {
       try {
-        const response = await fetch('http://localhost/api/destinos', {
+        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/destinos', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/'
           },
         });
 
@@ -112,10 +114,11 @@ export function CreateTour() {
     }
 
     try {
-      const response = await fetch('http://localhost/api/tours', {
+      const response = await fetch('https://tfgback-production-3683.up.railway.app/api/tours', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Origin': 'https://tourflex-tfg.web.app/',
           authorization: `Bearer ${await auth.currentUser.getIdToken()}`,
         },
         body: JSON.stringify(formData),
@@ -149,10 +152,11 @@ export function CreateTour() {
   };
 
   const crearEtapa = (tourId, destinoId, dias, hotel) => {
-    fetch('http://localhost/api/etapas-tours', {
+    fetch('https://tfgback-production-3683.up.railway.app/api/etapas-tours', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Origin': 'https://tourflex-tfg.web.app/',
         authorization: `Bearer ${auth.currentUser.getIdToken()}`,
       },
       body: JSON.stringify({
@@ -177,10 +181,11 @@ export function CreateTour() {
   };
 
   const crearRelacionTourOferta = (tourId, ofertaId) => {
-    fetch('http://localhost/api/ofertas-tours', {
+    fetch('https://tfgback-production-3683.up.railway.app/api/ofertas-tours', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Origin': 'https://tourflex-tfg.web.app/',
         authorization: `Bearer ${auth.currentUser.getIdToken()}`,
       },
       body: JSON.stringify({

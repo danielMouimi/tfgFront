@@ -15,10 +15,11 @@ export default function SaberMas() {
     const fetchOfferDetails = async () => {
       try {
         // Petición para obtener los detalles de la oferta
-        const offerResponse = await fetch(`http://localhost/api/ofertas/${id}`, {
+        const offerResponse = await fetch(`https://tfgback-production-3683.up.railway.app/api/ofertas/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/'
           },
         });
 
@@ -30,10 +31,11 @@ export default function SaberMas() {
         setOfferDetails(offerData);
 
         // Petición para obtener las etapas del tour asociado a la oferta
-        const etapasResponse = await fetch(`http://localhost/api/etapas/${offerData.tours[0].id}`, {
+        const etapasResponse = await fetch(`https://tfgback-production-3683.up.railway.app/api/etapas/${offerData.tours[0].id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/'
           },
         });
 

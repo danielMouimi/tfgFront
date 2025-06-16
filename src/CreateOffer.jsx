@@ -18,10 +18,11 @@ export function CreateOffer() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost/api/users', {
+        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/users', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/'
           },
         });
 
@@ -64,10 +65,11 @@ export function CreateOffer() {
     }
 
     try {
-      const response = await fetch('http://localhost/api/ofertas', {
+      const response = await fetch('https://tfgback-production-3683.up.railway.app/api/ofertas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Origin': 'https://tourflex-tfg.web.app/'
         },
         body: JSON.stringify(formData),
       });

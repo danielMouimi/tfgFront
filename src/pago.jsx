@@ -43,10 +43,11 @@ export function Pago() {
       const fetchUsuario = async () => {
         try {
           const token = await auth.currentUser.getIdToken(); // Obtiene el token de forma asíncrona
-          const response = await fetch(`http://localhost/api/users/${reserva.usuario_id}`, {
+          const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/users/${reserva.usuario_id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              'Origin': 'https://tourflex-tfg.web.app/',
               authorization: `Bearer ${token}`, // Usa el token obtenido
             },
           });
@@ -69,10 +70,11 @@ export function Pago() {
   const handleApprove = async (orderId) => {
     try {
       if (reserva) {
-        const response = await fetch(`http://localhost/api/reservas/${reserva.id}`, {
+        const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/reservas/${reserva.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/',
             authorization: `Bearer ${auth.currentUser.getIdToken()}`,
           },
           body: JSON.stringify({

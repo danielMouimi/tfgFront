@@ -8,10 +8,11 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import './login.css';
 export async function getUserID(email) {
     try {
-      const response = await fetch(`http://localhost/api/user-by-email/${email}`, {
+      const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/user-by-email/${email}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
+          'Origin': 'https://tourflex-tfg.web.app/'
         },
       });
   
@@ -73,10 +74,11 @@ export function Login() {
 
   async function CreateUser(usuario) {
         
-    fetch('http://localhost/api/register', {
+    fetch('https://tfgback-production-3683.up.railway.app/api/register', {
       method: "POST",
       headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Origin': 'https://tourflex-tfg.web.app/'
       },
       body: JSON.stringify(usuario),
   })

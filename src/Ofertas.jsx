@@ -36,10 +36,11 @@ const navigate = useNavigate(); // Hook para la navegación
 
 
         // Realiza la petición para obtener las ofertas
-        const response = await fetch(`http://localhost/api/ofertasUs/${id}`, {
+        const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/ofertasUs/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            origin: 'https://tourflex-tfg.web.app/'
           },
         });
 

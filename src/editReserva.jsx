@@ -29,7 +29,7 @@ export default function EditReserva() {
   useEffect(() => {
     const fetchDestinos = async () => {
       try {
-        const response = await fetch('http://localhost/api/destinos');
+        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/destinos');
         if (!response.ok) {
           throw new Error('Error al cargar los destinos');
         }
@@ -50,7 +50,7 @@ export default function EditReserva() {
       try {
         const updatedEtapas = await Promise.all(
           formData.etapas.map(async (etapa) => {
-            const response = await fetch(`http://localhost/api/destinosname/${etapa.destino_id}`);
+            const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/destinosname/${etapa.destino_id}`);
             if (!response.ok) {
               throw new Error(`Error al cargar el destino con ID ${etapa.destino_id}`);
             }
@@ -154,10 +154,11 @@ export default function EditReserva() {
     try {
       const idDestinos = await Promise.all(
         formData.etapas.map(async (destino) => {
-          const response = await fetch(`http://localhost/api/destinos/${destino.destino}`, {
+          const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/destinos/${destino.destino}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
+              'Origin': 'https://tourflex-tfg.web.app/',
             },
           });
   
@@ -182,10 +183,11 @@ export default function EditReserva() {
   async function ActualizarTour() {
     let idTour = '';
         try {
-            const response = await fetch('http://localhost/api/tours/'+reserva.tour.id, {
+            const response = await fetch('https://tfgback-production-3683.up.railway.app/api/tours/'+reserva.tour.id, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
+                'Origin': 'https://tourflex-tfg.web.app/',
                 authorization: `Bearer ${auth.currentUser.getIdToken()}`,
               },
                 body: JSON.stringify({
@@ -212,10 +214,11 @@ export default function EditReserva() {
 }
 const eliminarEtapasExistentes = async (tourId) => {
     try {
-      const response = await fetch(`http://localhost/api/etapas-tours-rm/${tourId}`, {
+      const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/etapas-tours-rm/${tourId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Origin': 'https://tourflex-tfg.web.app/',
           authorization: `Bearer ${auth.currentUser.getIdToken()}`,
         },
       });
@@ -231,10 +234,11 @@ const eliminarEtapasExistentes = async (tourId) => {
     }
   };
 function ActualizarEtapa(tourId, destinoId, dias, hotel) {
-    fetch('http://localhost/api/etapas-tours', {
+    fetch('https://tfgback-production-3683.up.railway.app/api/etapas-tours', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Origin': 'https://tourflex-tfg.web.app/',
             authorization: `Bearer ${auth.currentUser.getIdToken()}`, // Asegúrate de incluir el token de autenticación
         },
         body: JSON.stringify({
@@ -263,10 +267,11 @@ function ActualizarEtapa(tourId, destinoId, dias, hotel) {
       if (!validateForm()) return;
 
     try {
-      const response = await fetch(`http://localhost/api/reservas/${reserva.id}`, {
+      const response = await fetch(`https://tfgback-production-3683.up.railway.app/api/reservas/${reserva.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Origin': 'https://tourflex-tfg.web.app/'
         },
         body: JSON.stringify({
             usuario_id: reserva.usuario_id, // Mantiene el ID del usuario de la reserva original
