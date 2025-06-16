@@ -139,7 +139,6 @@ async function loginWithGoogle() {
         console.log(auth.currentUser);
       }
   
-      navigate('/');
     } catch (error) {
       console.error('Error:', error);
     }
