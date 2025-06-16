@@ -23,7 +23,7 @@ export async function getUserID(email) {
             password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
             password_confirmation: 'google-auth',
           };
-        CreateUser(Usuario);
+        await CreateUser(Usuario);
         console.error('Error al obtener el usuario:', response.statusText);
         return null;
       }
