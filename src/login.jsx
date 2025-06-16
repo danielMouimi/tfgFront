@@ -74,35 +74,11 @@ export function Login() {
         setEmailVerified(false);
       }
     });
+
+
   
     return () => unsubscribe(); // Limpia el listener al desmontar el componente
   }, [navigate]);
-
-
-  async function CreateUser(usuario) {
-    try {        
-    fetch('https://tfgback-production-3683.up.railway.app/api/register', {
-      method: "POST",
-      headers: {
-          'Content-Type': 'application/json',
-          'Origin': 'https://tourflex-tfg.web.app/'
-      },
-      body: JSON.stringify(usuario),
-  });
-  
-  if (!response.ok) {
-    throw new Error('Error al registrar el usuario');
-  }
-
-  const data = await response.json();
-  console.log('Usuario registrado exitosamente:', data);
-} catch (error) {
-  console.error('Error al registrar el usuario:', error);
-  setMessage('Hubo un problema al registrar el usuario.');
-}
-}
-
-
 
 
 
@@ -133,8 +109,22 @@ async function loginWithGoogle() {
       const exist = await getUserID(Usuario.email); 
       if (!exist) {
         
-        await CreateUser(Usuario);
-        await sendEmailVerification(userCredential.user);
+            try {        
+            fetch('https://tfgback-production-3683.up.railway.app/api/register', {
+              method: "POST",
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Origin': 'https://tourflex-tfg.web.app/'
+              },
+              body: JSON.stringify(Usuario),
+          });
+          
+        } catch (error) {
+          console.error('Error al registrar el usuario:', error);
+          setMessage('Hubo un problema al registrar el usuario.');
+        }
+        
+        await sendEmailVerification(auth.currentUser);
         setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
         auth.currentUser.id = exist.id;
         console.log('ID de usuario:', auth.currentUser.id);
@@ -221,42 +211,6 @@ async function handleFormSubmit() {
 
   function toggleRegister() {
     setRegister(!register);
-  }
-
-  async function loginWithGoogle() {
-    try {
-      await signInWithPopup(auth, new GoogleAuthProvider());
-      console.log('Autenticación correcta');
-
-      const Usuario = {
-        name: auth.currentUser.displayName,
-        email: auth.currentUser.email,
-        password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
-        password_confirmation: 'google-auth',
-      };
-
-      
-  
-      const exist = await getUserID(Usuario.email); 
-      if (!exist) {
-        
-        await CreateUser(Usuario);
-        await sendEmailVerification(userCredential.user);
-        setMessage('Correo de verificación enviado. Por favor, revisa tu bandeja de entrada.');
-        auth.currentUser.id = exist.id;
-        console.log('ID de usuario:', auth.currentUser.id);
-        console.log(auth.currentUser);
-      } else {
-        console.log('Usuario ya existe, no se creará de nuevo');
-        auth.currentUser.id = exist.id; 
-        console.log('ID de usuario:', auth.currentUser.id);
-        console.log(auth.currentUser);
-      }
-
-    } catch (error) {
-      console.error('Error:', error);
-      setMessage('Hubo un problema al iniciar sesión con Google.');
-    }
   }
 
   function logout() {
