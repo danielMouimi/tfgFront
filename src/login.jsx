@@ -73,8 +73,7 @@ export function Login() {
 
 
   async function CreateUser(usuario) {
-    console.log('Usuario no existe, creando nuevo usuario');
-        
+    try {        
     fetch('https://tfgback-production-3683.up.railway.app/api/register', {
       method: "POST",
       headers: {
@@ -82,21 +81,19 @@ export function Login() {
           'Origin': 'https://tourflex-tfg.web.app/'
       },
       body: JSON.stringify(usuario),
-  })
-      .then(response => {
-          console.log(response);
-          if (!response.ok) {
-          throw new Error('Network response was not ok');
-          }
-          return response.json();
-      })
-      .then(data => {
-          console.log('Success:', data);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
+  });
+  
+  if (!response.ok) {
+    throw new Error('Error al registrar el usuario');
   }
+
+  const data = await response.json();
+  console.log('Usuario registrado exitosamente:', data);
+} catch (error) {
+  console.error('Error al registrar el usuario:', error);
+  setMessage('Hubo un problema al registrar el usuario.');
+}
+}
 
 
 
@@ -123,6 +120,8 @@ async function loginWithGoogle() {
         password: 'google-auth', // Contraseña ficticia, ya que Google maneja la autenticación
         password_confirmation: 'google-auth',
       };
+
+      console.log('llega hasra getuserid');
   
       const exist = await getUserID(Usuario.email); 
       if (!exist) {
