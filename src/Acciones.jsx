@@ -44,6 +44,7 @@ export function Acciones() {
                   headers: { 
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
+                    'Origin': 'https://tourflex-tfg.web.app/'
                   }, 
                   credentials: 'include',
                   body: JSON.stringify(destino),
