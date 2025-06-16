@@ -332,11 +332,7 @@ async function handleFormSubmit() {
                       </button>
                     )}
         </div>
-            <div className='actions'>
-            <button onClick={loginWithGoogle} className='secondary-button'>
-                <img src={foto} alt='Google logo' className='google-logo'/>
-                Iniciar sesión con Google</button>
-            </div>
+ 
             </>
           ) : 
           <div className='logout'>
