@@ -1,0 +1,84 @@
+.create-offer-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-offer-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .create-offer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .primary-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #0070ba;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .primary-button:hover {
+    background-color: #005ea6;
+    transform: scale(1.05);
+  }
+  
+  .secondary-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .secondary-button:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+  }
+  
+  .alert {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #d4edda;
+    color: #155724;
+    font-size: 1rem;
+    text-align: center;
+  }

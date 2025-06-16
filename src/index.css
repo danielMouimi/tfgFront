@@ -1,0 +1,185 @@
+@import './App.css';
+
+.index-container {
+  font-family: Arial, sans-serif;
+  color: var(--secundary-color);
+}
+
+/* Hero Section */
+.hero {
+    width: 100vw;
+    height: calc(100vh - 8rem); /* Altura total menos la altura de la barra de navegación */
+  background-image: url('./assets/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    padding-top: 18rem;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  
+}
+
+.primary-button {
+    width: 14rem;
+    height: 4.5rem;
+    text-decoration: none !important;
+}
+
+/* Ofertas Section */
+.offers {
+    width: 100vw;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .offers h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Vista móvil: Carrusel */
+  .offer-card-mobile {
+    display: none; /* Ocultar en escritorio */
+  }
+  
+  .offer-card {
+    background-color: var(--secundary-color);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 30rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+  }
+  
+  .mobile-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  
+  /* Vista escritorio: Scroll horizontal */
+  .offers-scroll {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    overflow-x: auto; /* Scroll horizontal */
+    scroll-behavior: smooth; /* Suaviza el desplazamiento */
+    width: 98.5vw;
+  }
+  
+  .offer-card {
+    flex: 0 0 auto; /* Evita que las tarjetas se reduzcan */
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .offers-scroll {
+      display: none; /* Ocultar en móvil */
+    }
+  
+    .offer-card-mobile {
+      display: block; /* Mostrar en móvil */
+    }
+  }
+
+/* ¿Cómo funciona? Section */
+.how-it-works {
+  background-color: var(--terciary-color);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  width: 100vw;
+}
+
+.steps-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.step {
+  text-align: center;
+}
+
+.step .icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Reseñas Section */
+.reviews {
+  padding: 2rem;
+  text-align: center;
+
+}
+
+.review-card {
+  background-color: var(--main-bg-color);
+  color: var(--secundary-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 10rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .offers-container,
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer-card,
+  .review-card {
+    width: 90%;
+  }
+
+}
+
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 1); /* Fondo semitransparente para que sean visibles */
+    border-radius: 50%; /* Forma circular */
+    width: 2rem;
+    height: 2rem;
+}
+
+.carousel-item {
+    padding: 5rem;
+}

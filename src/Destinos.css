@@ -1,0 +1,203 @@
+.destinos-page {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .destinos-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--secundary-color);
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-bar input {
+    padding: 0.75rem;
+    border: 1px solid var(--secundary-color);
+    border-radius: 4px;
+    width: 300px;
+    font-size: 1rem;
+  }
+  
+  .search-bar .search-button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--terciary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-bar .search-button:hover {
+    filter: brightness(0.9);
+  }
+  
+  .destino-cont {
+    /* Fondo de imagen del destino específico */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    width: 100%; /* Ocupa el ancho completo de la vista */
+    height: 300px; /* Ajusta la altura para que sea vistosa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .destino-card {
+    background-color: var(--secundary-color); /* Contraste con el marrón */
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 90%; /* Ajusta el ancho dentro del contenedor */
+    height: 60%;
+    max-width: 1200px; /* Limita el ancho máximo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .destino-card h2 {
+    font-size: 2rem;
+  }
+  
+  .destino-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .action-button {
+    background-color: var(--terciary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    filter: brightness(0.9);
+  }
+
+  .modal-gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .galeriaDe {
+    color: white;
+    font-weight: bold;
+  }
+  .modal-content {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    text-align: center;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 5rem;
+    color: white;
+    cursor: pointer;
+  }
+.carousel-item {
+    max-height: 90vh;
+  }
+  
+  .carousel-item img {
+    margin-left: 10vw;
+    max-width: 80%;
+    max-height: 100%;
+    border-radius: 8px;
+  }
+
+
+
+  @media (max-width: 1200px) {
+    .carousel-item img {
+      margin-left: 10vw; /* Reduce el margen en pantallas medianas */
+      max-width: 80%; /* Ajusta el ancho de la imagen */
+      height: auto; /* Mantén la proporción de la imagen */
+    }
+  }
+  @media (max-width: 768px) {
+    .carousel-inner {
+        height: 70vh;
+      }
+    .carousel-item img {
+      margin-left: 5vw; /* Elimina el margen en pantallas pequeñas */
+      max-width: 90%; /* Ajusta el ancho de la imagen */
+      height: auto; /* Mantén la proporción de la imagen */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel-inner {
+      height: 50vh;
+    }
+    .carousel-item img {
+      margin-left: 0; /* Elimina el margen en pantallas muy pequeñas */
+      max-width: 73vw; /* Ocupa todo el ancho disponible */
+      height: auto; /* Mantén la proporción de la imagen */
+    }
+  }
+
+  @media (max-width: 375px) {
+    .carousel-item img {
+        max-width: 80vw; /* Ocupa todo el ancho disponible */
+        height: auto; /* Mantén la proporción de la imagen */
+      }
+  }
+
+  @media (max-width: 320px) {
+    .carousel-item img {
+        max-width: 90vw; /* Ocupa todo el ancho disponible */
+        height: auto; /* Mantén la proporción de la imagen */
+      }
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  .modal-add-etapa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
