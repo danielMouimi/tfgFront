@@ -588,6 +588,29 @@ if (user) {
           ) : (
             <p>No hay etapas asociadas.</p>
           )}
+
+{reserva.fecha_reserva >= today && (
+  <>
+    {user ? (
+      reserva.estado === 'pendiente' && (
+        <button className="action-button" onClick={() => tobuy(reserva)}>
+          Proceder al pago
+        </button>
+      )
+    ) : (
+      <button
+        className="action-button"
+        onClick={() =>
+          navigate('/login', {
+            state: { reserva }, // Pasar la información de la reserva al componente de login
+          })
+        }
+      >
+        Proceder al pago
+      </button>
+    )}
+  </>
+)}
         </div>
       ))
     ) : (
