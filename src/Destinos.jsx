@@ -196,7 +196,7 @@ export default function Destinos() {
           throw new Error('No se pudo obtener el ID del usuario.');
         }
       try {
-        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/reservas'+idUsuario.id, {
+        const response = await fetch('https://tfgback-production-3683.up.railway.app/api/reservas/'+idUsuario.id, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
