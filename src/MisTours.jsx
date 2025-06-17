@@ -591,13 +591,7 @@ if (user) {
 
 {reserva.fecha_reserva >= today && (
   <>
-    {user ? (
-      reserva.estado === 'pendiente' && (
-        <button className="action-button" onClick={() => tobuy(reserva)}>
-          Proceder al pago
-        </button>
-      )
-    ) : (
+    
       <button
         className="action-button"
         onClick={() =>
@@ -608,7 +602,6 @@ if (user) {
       >
         Proceder al pago
       </button>
-    )}
   </>
 )}
         </div>
