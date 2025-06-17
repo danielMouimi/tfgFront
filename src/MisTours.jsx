@@ -589,7 +589,7 @@ if (user) {
             <p>No hay etapas asociadas.</p>
           )}
 
-{reserva.fecha_reserva >= today && (
+
   <>
     
       <button
@@ -603,7 +603,6 @@ if (user) {
         Proceder al pago
       </button>
   </>
-)}
         </div>
       ))
     ) : (
